@@ -1,0 +1,5 @@
+# ignore all files of node_modules
+node_modules/
+
+# ignore all files of VS Code Configuration
+.vscode/
