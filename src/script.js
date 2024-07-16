@@ -1,4 +1,3 @@
-// const userID = document.getElementById('user-id');
 const task = document.getElementById('task');
 const addTask = document.getElementById('addTask');
 
@@ -6,7 +5,17 @@ const todo = document.getElementById('todo');
 const pending = document.getElementById('pending');
 const completed = document.getElementById('completed');
 
-const userInfo = "random123";
+const addTaskInfo = document.getElementById('addTaskInfo');
+const addUserInfo = document.getElementById('addUserInfo');
+const taskContainer = document.getElementById('taskContainer');
+const logOff = document.getElementById('logOff');
+const logOffBtn = document.querySelector('.transition.duration-500.hover\\:scale-125')
+
+const user = document.getElementById('user');
+const addUser = document.getElementById('addUser');
+
+let userInfo = localStorage.getItem('user');
+
 
 function loadDeleteIcon() {
     const NS = 'http://www.w3.org/2000/svg'
@@ -269,10 +278,43 @@ let addProcess = async (newTask) => {
 }
 
 addTask.addEventListener('click', () => {
-    // addProcess(userID.value, task.value);
     addProcess(task.value);
 })
 
-todoProcess();
-pendingProcess();
-completedProcess();
+function go() {
+    todoProcess();
+    pendingProcess();
+    completedProcess();
+}
+
+logOffBtn.addEventListener('click', () => {
+    localStorage.clear();
+    window.location.reload();
+})
+
+if (!userInfo) {
+    addUserInfo.classList.remove('hidden');
+    addUserInfo.classList.add('flex');
+
+    addUser.addEventListener('click', () => {
+        localStorage.setItem('user', user.value);
+        userInfo = user.value;
+        logOff.classList.remove('hidden');
+        logOff.classList.add('block');
+        addUserInfo.classList.remove('flex');
+        addUserInfo.classList.add('hidden');
+        addTaskInfo.classList.remove('hidden');
+        addTaskInfo.classList.add('flex');
+        taskContainer.classList.remove('hidden');
+        taskContainer.classList.add('grid');
+        go();
+    })
+} else {
+    logOff.classList.remove('hidden');
+    logOff.classList.add('block');
+    addTaskInfo.classList.remove('hidden');
+    addTaskInfo.classList.add('flex');
+    taskContainer.classList.remove('hidden');
+    taskContainer.classList.add('grid');
+    go();
+}
