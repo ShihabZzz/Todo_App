@@ -582,6 +582,14 @@ video {
   height: 1.25rem;
 }
 
+.h-60 {
+  height: 15rem;
+}
+
+.max-h-60 {
+  max-height: 15rem;
+}
+
 .w-32 {
   width: 8rem;
 }
@@ -644,6 +652,10 @@ video {
 
 .gap-9 {
   gap: 2.25rem;
+}
+
+.overflow-y-auto {
+  overflow-y: auto;
 }
 
 .rounded {
