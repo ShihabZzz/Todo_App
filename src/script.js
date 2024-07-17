@@ -280,6 +280,11 @@ let addProcess = async (newTask) => {
 addTask.addEventListener('click', () => {
     addProcess(task.value);
 })
+task.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+        addProcess(task.value);
+    }
+})
 
 function go() {
     todoProcess();
@@ -296,7 +301,7 @@ if (!userInfo) {
     addUserInfo.classList.remove('hidden');
     addUserInfo.classList.add('flex');
 
-    addUser.addEventListener('click', () => {
+    function action() {
         localStorage.setItem('user', user.value);
         userInfo = user.value;
         logOff.classList.remove('hidden');
@@ -308,6 +313,13 @@ if (!userInfo) {
         taskContainer.classList.remove('hidden');
         taskContainer.classList.add('grid');
         go();
+    }
+
+    addUser.addEventListener('click', action)
+    user.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+            action();
+        }
     })
 } else {
     logOff.classList.remove('hidden');
